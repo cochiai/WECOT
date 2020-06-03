@@ -1,11 +1,10 @@
-// JavaScript source code
 // Automatic Slideshow - change image every 4 seconds
 var myIndex = 0;
 carousel();
 
 function carousel() {
 	var i;
-	var x = document.getElementsByClassName(".mySlides");
+	var x = document.getElementsByClassName("mySlides");
 	for (i = 0; i < x.length; i++) {
 		x[i].style.display = "none";
 	}
@@ -16,7 +15,7 @@ function carousel() {
 }
 
 // Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
+function toggleNavigationMenu() {
 	var x = document.getElementById("navDemo");
 	if (x.className.indexOf("w3-show") == -1) {
 		x.className += " w3-show";

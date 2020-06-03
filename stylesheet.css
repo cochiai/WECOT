@@ -1,3 +1,25 @@
 ﻿body
 {
 }
+
+/*MY CSS*/
+.form-label {
+    font-weight:bold;
+}
+
+/*W3.CSS*/
+/*NAVIGATION*/
+.mobile-bar {
+    margin-top:46px;
+}
+/*SLIDE*/
+.mySlides {
+    display: none;
+}
+.w3-content {
+    max-width: 2000px;
+    margin-top: 46px;
+}
+.slide-image {
+    width: 100%;
+}
