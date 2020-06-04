@@ -1,6 +1,9 @@
 // Automatic Slideshow - change image every 4 seconds
 var myIndex = 0;
-carousel();
+
+window.onload = function () {
+	carousel();
+}
 
 function carousel() {
 	var i;
@@ -21,13 +24,5 @@ function toggleNavigationMenu() {
 		x.className += " w3-show";
 	} else {
 		x.className = x.className.replace(" w3-show", "");
-	}
-}
-
-// When the user clicks anywhere outside of the modal, close it
-var modal = document.getElementById('ticketModal');
-window.onclick = function (event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
 	}
 }
