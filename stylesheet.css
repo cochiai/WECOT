@@ -1,16 +1,23 @@
-﻿body
-{
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /*MY CSS*/
 .form-label {
     font-weight:bold;
 }
+.geolocation {
+    width: 100%;
+    min-height: 480px;
+}
+
 
 /*W3.CSS*/
 /*NAVIGATION*/
 .mobile-bar {
-    margin-top:46px;
+    margin-top: 46px;
 }
 /*SLIDE*/
 .mySlides {
