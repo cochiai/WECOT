@@ -1,18 +1,16 @@
-﻿html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+﻿/*MY CSS*/
+/*CONTENT*/
+.logo {
+    max-height:50px;
 }
-
-/*MY CSS*/
 .form-label {
     font-weight:bold;
 }
+/*FOOTER*/
 .geolocation {
     width: 100%;
     min-height: 480px;
 }
-
 
 /*W3.CSS*/
 /*NAVIGATION*/
@@ -23,10 +21,21 @@
 .mySlides {
     display: none;
 }
+.slide-image {
+    width: 100%;
+}
+/*CONTENT*/
 .w3-content {
     max-width: 2000px;
     margin-top: 46px;
 }
-.slide-image {
-    width: 100%;
+.container {
+    max-width: 800px !important;
+}
+.row-input {
+    margin: 0 -16px 8px -16px;
+}
+/*FOOTER*/
+.icon {
+    width: 30px;
 }
