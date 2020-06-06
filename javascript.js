@@ -50,9 +50,6 @@ function validateEmail(email) {
 //gelocation
 var map, infoWindow;
 function initMap() {
-	//var directionsService = new google.maps.DirectionsService();
-	//var directionsRenderer = new google.maps.DirectionsRenderer();
-
 	infoWindow = new google.maps.InfoWindow;
 
 	//sbb bahnhof location
@@ -60,13 +57,13 @@ function initMap() {
 		lat: 47.048889,
 		lng: 8.310556
 	};
-
+	// show map
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: sbbpos,
 		zoom: 10
 	});
 
-	// HTML5 geolocation.
+	// HTML5 geolocation
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function (position) {
 			//user's location
@@ -79,28 +76,6 @@ function initMap() {
 
 			var marker = new google.maps.Marker({ position: pos, map: map });
 			var marker2 = new google.maps.Marker({ position: sbbpos, map: map });
-
-			// Define related map
-			//directionsRenderer.setMap(map);
-
-			//route request
-			//directionsService.route(
-			//	{
-			//		origin: pos,
-			//                       destination: sbbpos,
-			//		travelMode: google.maps.DirectionsTravelMode.DRIVING
-			//	},
-			//	function (response, status) {
-			//		if (status == google.maps.DirectionsStatus.OK) {
-			//			// Display the directions using Google's Directions Renderer.
-			//			directionsRenderer.setDirections(result);
-			//		} else {
-			//			//infoWindow.setPosition(pos);
-			//			//infoWindow.setContent("Directions failed due to: " + status);
-			//			//infoWindow.open(map);
-			//		}
-			//	});
-
 
 		}, function () {
 			// Browser doesn't support Geolocation

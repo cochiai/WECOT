@@ -34,27 +34,36 @@
 		<section>
 			<div class="w3-container w3-content w3-center w3-padding-64 container">
 				<?php
+					//check if call is from the form
 					if ($_SERVER["REQUEST_METHOD"] == "POST") {
-						//values
-						$firstname = $_POST["firstname"];
-						$lastname = $_POST["lastname"];
-						$lastname = $_POST["email"];
-						$gender = $_POST["gender"];						
-						$preferredActivities = $_POST["preferredActivities"];	
-						
-						print_r ($preferredActivities);
-						exit();
+						//get values
+						//check if post values are set, if yes get value, if not just empty or null
+						$firstname = isset($_POST["firstname"]) ? $_POST["firstname"] : "";
+						$lastname = isset($_POST["lastname"]) ? $_POST["lastname"] : "";
+						$email = isset($_POST["email"]) ? $_POST["email"] : "";
+						$gender = isset($_POST["gender"]) ? $_POST["gender"] : "";						
+						$preferredActivities = isset($_POST["preferredActivities"]) ? $_POST["preferredActivities"] : null;	
 						
 						//validation
+						//check if values are valid
+						//valid == not empty and email address is valid
 						$valid = true;
 						$message = "";
 						if (empty($firstname)) {
 							$message = "Firstname is required.";
 							$valid = false;
-						} 				
+						} else if ($valid && empty($lastname)){
+							$message = "Lastname is required.";
+							$valid = false;						
+						} else if ($valid && !filter_var($email, FILTER_VALIDATE_EMAIL)){
+							$message = "Email address is invalid.";
+							$valid = false;						
+						} 
 
+						//values are valid
 						if($valid)
 						{
+							// prepare title depending on the gender.
 							$title = "";
 							if($gender == "male"){
 								$title = "Mr.";								
@@ -62,26 +71,62 @@
 								$title = "Ms.";									
 							}
 
-							$preferredActivitiesComma = ""; 
+							//prepare the preferred activity sentence
+							//default value no preferred activities
+							$preferredActivitiesComma = "You do not have any preferred activities."; 
+							//user has preferred activities
+							if(isset($preferredActivities)) {
+								$preferredActvitiesCount = count($preferredActivities);
 
+								//check if theres only one preferred activity, 
+								//no loop needeed and singular sentence
+								//and make preferredActivities lower case
+								if($preferredActvitiesCount == 1) {
+									$preferredActivitiesComma = 'Your preferred activity is ';
+									$preferredActivitiesComma .= strtolower($preferredActivities[0]) . '.';
+
+								}else{
+									//more than 1 activity
+									//plural
+									//and make preferredActivities lower case
+									$preferredActivitiesComma = 'Your preferred activities are ';
+									for ($i = 0; $i < $preferredActvitiesCount; $i++) {
+										//last preferred activity, add and instead of comma
+										if(($preferredActvitiesCount -1) == $i) {
+											$preferredActivitiesComma .= "and " . strtolower($preferredActivities[$i]) . ".";
+										}else{
+										//add comma
+											$preferredActivitiesComma .= strtolower($preferredActivities[$i]) . ", ";
+										}
+									}
+								}
+							}
+
+							//show result
+							//and back button
 							echo '<h2 class="w3-wide">THANK YOU FOR JOINING!</h2>
 									<p class="w3-center">
-										Welcome ' . $title . ' ' . $_POST["firstname"] . ' ' . $_POST["lastname"] .' :) <br>
-										Your email address is ' . $_POST["email"] . '
-										Your preferred activities are 
-									</p>
+										Welcome ' . $title . ' ' . $firstname . ' ' . $lastname .' :) <br>
+										Your email address is ' . $email . '.<br>'
+										. $preferredActivitiesComma .
+									'</p>
 									<a class="w3-button w3-black w3-section w3-left" type="submit" href="javascript:history.go(-1)">Back</a>';
 						} else{
+							//values are invalid
+							//show error message
+							//and back button
 							echo '<h2 class="w3-wide">THERE WAS AN ERROR.</h2>
 									<p class="w3-center">'
 										. $message .' Please try again.
 									</p>
-									<button class="w3-button w3-black w3-section w3-right" type="submit">Try again</button>';
+									<a class="w3-button w3-black w3-section w3-left" type="submit" href="javascript:history.go(-1)">Try again</a>';
 						}
 					} else {
+						//call is not from form but just from URL.
+						echo '<h2 class="w3-wide">NOTHING TO SEE HERE.</h2>
+							<a class="w3-button w3-black w3-section w3-left" type="submit" href="index.html">Go to smile home page.</a>';
 					
-					}	
-					
+					}						
 				?>				
 			</div>			
 		</section>
